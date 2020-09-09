@@ -18,8 +18,8 @@ public class SalestaxApplication {
 		CommandExecutor commandExecutor = CommandExecutor.getInstance();
 		Receipt receipt = Receipt.getInstances();
 
-		while (true) {
-			try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))){
+		try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))){
+			while (true) {
 				String commandText = bufferedReader.readLine();
 				if (commandText.isEmpty() || "exit".equalsIgnoreCase(commandText)) {
 					System.out.println(receipt.getReceipt());
