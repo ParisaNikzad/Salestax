@@ -13,16 +13,13 @@ import java.io.InputStreamReader;
 
 public class SalestaxApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 
 		CommandExecutor commandExecutor = CommandExecutor.getInstance();
 		Receipt receipt = Receipt.getInstances();
-		BufferedReader bufferedReader;
-
-		bufferedReader = new BufferedReader(new InputStreamReader(System.in));
 
 		while (true) {
-			try{
+			try(BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in))){
 				String commandText = bufferedReader.readLine();
 				if (commandText.isEmpty() || "exit".equalsIgnoreCase(commandText)) {
 					System.out.println(receipt.getReceipt());
@@ -33,15 +30,6 @@ public class SalestaxApplication {
 					if(!executionSuccess) {
 						break;
 					}
-				}
-			}catch (Exception e){
-				System.out.println(e);
-			}
-			finally{
-				try{
-					bufferedReader.close();
-				}catch(Exception e){
-					System.out.println(e);
 				}
 			}
 		}
